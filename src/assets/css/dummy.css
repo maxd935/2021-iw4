@@ -1,0 +1,19 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  min-height: 100vh;
+  height: 100%;
+  font-family: sans-serif;
+}
+header {
+  position: sticky;
+  top: 1;
+  background-color: royalblue;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
