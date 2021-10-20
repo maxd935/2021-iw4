@@ -1,4 +1,5 @@
 import page from 'page';
+import checkConnectivity from './assets/hepers/network.js';
 
 (async () => {
   const app = document.querySelector('#app');
@@ -15,6 +16,15 @@ import page from 'page';
     event.preventDefault();
 
     window.deferedInstallPrompt = event;
+  });
+
+  checkConnectivity({ threshold: 2000 });
+  document.addEventListener('connection-changed', ({ detail: state }) => {
+    if (!state) {
+      document.documentElement.style.setProperty('--app-main-color', '#949494');
+    } else {
+      document.documentElement.style.setProperty('--app-main-color', 'royalblue');
+    }
   });
 
   page('*', (ctx, next) => {
