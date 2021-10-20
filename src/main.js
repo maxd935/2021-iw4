@@ -32,7 +32,6 @@ import page from 'page';
 
     const cards = data.map(({ image, placeholder, content: { title, description } }, idx) => {
       const card = Card;
-      console.log(idx);
       card.properties = {
         image: image,
         placeholder: placeholder,

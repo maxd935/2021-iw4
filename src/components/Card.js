@@ -25,7 +25,7 @@ export default {
       };
       document.head.appendChild(link);
     }
-    console.log(this.properties);
+
     const template = document.createElement('div');
     template.innerHTML = html`
       <a class="card" href="/read/${this.properties.idx.toString()}">
