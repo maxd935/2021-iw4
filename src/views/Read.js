@@ -36,6 +36,9 @@ export default {
           <p class="description">${this.properties.content.description}</p>
           <p class="content">${this.properties.content.text}</p>
         </main>
+        <footer>
+          <button id="install">Install application for daily news 📬</button>
+        </footer>
       </article>
     `;
 

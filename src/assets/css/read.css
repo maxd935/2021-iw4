@@ -22,3 +22,16 @@
   font-size: 1.25rem;
   padding-bottom: 1rem;
 }
+
+[data-page="detail"] button {
+  display: none;
+  background-color: cadetblue;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  padding: 0.25rem 0.5rem;
+  border: none;
+}
+[data-page="detail"] button.active {
+  display: block;
+}

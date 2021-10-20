@@ -10,6 +10,13 @@ import page from 'page';
   const skeleton = homePage.querySelector('.skeleton');
   const content = homePage.querySelector('.content');
 
+  window.deferedInstallPrompt = null;
+  window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+
+    window.deferedInstallPrompt = event;
+  });
+
   page('*', (ctx, next) => {
     homePage.hidden = true;
     detailPage.hidden = true;
@@ -97,6 +104,22 @@ import page from 'page';
 
     const renderedView = read.render();
     detailPage.innerHTML = '';
+
+    const installBtn = renderedView.querySelector('button');
+    if (window.deferedInstallPrompt) {
+      installBtn.classList.add('active');
+      installBtn.addEventListener('click', () => {
+        window.deferedInstallPrompt.prompt();
+        window.deferedInstallPrompt.userChoice
+          .then((result) => {
+            if (result !== 'accepted') {
+              installBtn.classList.remove('active');
+              window.deferedInstallPrompt = null;
+            }
+          })
+      });
+    }
+
     detailPage.appendChild(renderedView);
 
     // Display page
