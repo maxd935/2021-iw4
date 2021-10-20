@@ -10,7 +10,8 @@ export default {
   properties: {
     image: null,
     placeholder: null,
-    content: {}  
+    content: {},
+    idx: null
   },
 
   render() {
@@ -24,21 +25,23 @@ export default {
       };
       document.head.appendChild(link);
     }
-
+    console.log(this.properties);
     const template = document.createElement('div');
     template.innerHTML = html`
-      <article class="card">
-        <header>
-          <figure>
-            <div class="placeholder" style="background-image: url(${this.properties.placeholder})"></div>
-            <img src="" alt="${this.properties.content.title}" data-src="${this.properties.image}">
-          </figure>
-        </header>
-        <main>
-          <h1>${this.properties.content.title}</h1>
-          <p>${this.properties.content.description}</p>
-        </main>
-      </article>
+      <a class="card" href="/read/${this.properties.idx.toString()}">
+        <article>
+          <header>
+            <figure>
+              <div class="placeholder" style="background-image: url(${this.properties.placeholder})"></div>
+              <img src="" alt="${this.properties.content.title}" data-src="${this.properties.image}">
+            </figure>
+          </header>
+          <main>
+            <h1>${this.properties.content.title}</h1>
+            <p>${this.properties.content.description}</p>
+          </main>
+        </article>
+      </a>
     `;
     const card = template.querySelector('.card');
     // card.querySelector('img').onload = function() {

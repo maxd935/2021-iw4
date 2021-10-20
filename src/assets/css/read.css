@@ -1,0 +1,24 @@
+[data-page="detail"] figure {
+  margin: 0;
+}
+[data-page="detail"] img {
+  width: 100%;
+  max-height: 35vh;
+  object-fit: cover;
+}
+[data-page="detail"] h1 {
+  margin: 0;
+}
+[data-page="detail"] main {
+  padding: 0 1rem;
+}
+[data-page="detail"] p, h1 {
+  text-align: justify;
+}
+[data-page="detail"] p.description {
+  color: #535353;
+}
+[data-page="detail"] p.content {
+  font-size: 1.25rem;
+  padding-bottom: 1rem;
+}

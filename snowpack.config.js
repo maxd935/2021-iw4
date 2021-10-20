@@ -6,6 +6,9 @@ module.exports = {
   mount: {
     src: '/'
   },
+  routes: [
+    { "match": "routes", "src": ".*", "dest": "/index.html" }
+  ],
   plugins: [
     /* ... */
   ],

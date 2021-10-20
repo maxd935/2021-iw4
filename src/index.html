@@ -15,9 +15,12 @@
       background-color: #fefefe;
       font-family: sans-serif;
     }
-    h1 {
+    a {
       margin: 0;
       padding: 0;
+      text-decoration: none;
+      font-size: 1.5rem;
+      color: white;
     }
     #app > header {
       text-align: center;
@@ -31,7 +34,8 @@
       color: #ffffff;
       z-index: 10;
     }
-    #app > main {
+
+    [data-page="home"] {
       padding: 0 1rem;
       padding-top: 1rem;
       padding-bottom: 1rem;
@@ -81,15 +85,18 @@
 <body>
   <section id="app">
     <header>
-      <h1>Awesome News 📬</h1>
+      <a href="/">Awesome News 📬</a>
     </header>
     <main>
-      <div class="skeleton">
-        <div class="hero"></div>
-        <div class="title"></div>
-        <div class="text"></div>
+      <div data-page="home" hidden>
+        <div class="skeleton">
+          <div class="hero"></div>
+          <div class="title"></div>
+          <div class="text"></div>
+        </div>
+        <div class="content"></div>
       </div>
-      <div class="content" hidden></div>
+      <div data-page="detail" hidden></div>
     </main>
   </section>
   <script src="/main.js" type="module"></script>
