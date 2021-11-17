@@ -1,5 +1,6 @@
 import page from 'page';
 import checkConnectivity from './assets/hepers/network.js';
+import { getDb, setArticles, getArticles } from './assets/hepers/idb.js';
 
 (async () => {
   const app = document.querySelector('#app');
@@ -17,6 +18,9 @@ import checkConnectivity from './assets/hepers/network.js';
 
     window.deferedInstallPrompt = event;
   });
+
+
+  const db = await getDb();
 
   checkConnectivity({ threshold: 2000 });
   document.addEventListener('connection-changed', ({ detail: state }) => {
@@ -37,8 +41,15 @@ import checkConnectivity from './assets/hepers/network.js';
     const cardModule = await import('./components/Card.js');
     const { default: Card } = cardModule;
 
-    const result = await fetch('/data/spacex.json');
-    const data = await result.json();
+    let articles = [];
+    try {
+      const result = await fetch('/data/spacex.jsons');
+      const data = await result.json();
+  
+      articles = await setArticles(db, data); 
+    } catch (error) {
+      articles = await getArticles(db);
+    }
   
     document.addEventListener('card-mounted', () => {
       skeleton.hidden = true;
@@ -47,7 +58,7 @@ import checkConnectivity from './assets/hepers/network.js';
   
     content.innerHTML = '';
 
-    const cards = data.map(({ image, placeholder, content: { title, description } }, idx) => {
+    const cards = articles.map(({ image, placeholder, content: { title, description } }, idx) => {
       const card = Card;
       card.properties = {
         image: image,

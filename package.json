@@ -12,6 +12,7 @@
     "snowpack": "^3.8.8"
   },
   "dependencies": {
+    "idb": "^6.1.5",
     "page": "^1.11.6"
   }
 }
